@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>fullebanko</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {{
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+        }}
+        h1 {{
+            font-size: 2.5em;
+            margin-bottom: 0.3em;
+            text-shadow: 2px 2px 8px #ff00ff;
+        }}
+        p {{
+            font-size: 1.2em;
+            margin-bottom: 1.5em;
+        }}
+        .btn {{
+            display: inline-block;
+            padding: 1em 2em;
+            font-size: 1.2em;
+            color: #000;
+            background-color: #ff00ff;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ff00ff;
+            transition: transform 0.3s ease;
+        }}
+        .btn:hover {{
+            transform: scale(1.1);
+        }}
+        .counter {{
+            margin-top: 2em;
+            font-size: 1.1em;
+            color: #ccc;
+        }}
+    </style>
+</head>
+<body>
+    <h1>fullebanko 🔞</h1>
+    <p>📢 Канал, для поехавших<br>Здесь ты будешь кроликом для испытаний, ну и похихикать еще<br>⏬ Проверь работает ли кнопка ниже</p>
+    <a class="btn" href="https://t.me/fullebanko" target="_blank">Вступить в Telegram</a>
+    <div class="counter">
+        Подписчиков: <span id="subs">...</span>
+    </div>
+    <script>
+        async function fetchCount() {{
+            try {{
+                const res = await fetch("https://api.telegram.org/bot{TOKEN}/getChatMembersCount?chat_id=@fullebanko");
+                const data = await res.json();
+                if (data.ok) {{
+                    document.getElementById("subs").textContent = data.result;
+                }} else {{
+                    document.getElementById("subs").textContent = "н/д";
+                }}
+            }} catch (e) {{
+                document.getElementById("subs").textContent = "н/д";
+            }}
+        }}
+        fetchCount();
+    </script>
+</body>
+</html>
